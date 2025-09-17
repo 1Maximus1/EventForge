@@ -1,0 +1,6 @@
+services:
+  eventforge.api:
+    image: ${DOCKER_REGISTRY-}eventforgeapi
+    build:
+      context: EventForge.API
+      dockerfile: Dockerfile
