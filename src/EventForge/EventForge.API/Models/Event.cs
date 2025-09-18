@@ -31,7 +31,7 @@ public class Event : Entity<ValueObjects.EventId>
         get; private set;
     } = default!;
 
-    private Event()
+    public Event()
     {
     }
 

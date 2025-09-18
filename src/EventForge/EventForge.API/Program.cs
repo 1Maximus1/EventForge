@@ -12,12 +12,15 @@ builder.Services.AddMediatR(config =>
     config.AddOpenBehavior(typeof(ValidationBehavior<,>));
     config.AddOpenBehavior(typeof(LoggingBehavior<,>));
 });
+
 builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
 
-builder.Services.AddMarten(opts =>
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+
+builder.Services.ConfigureHttpJsonOptions(o =>
 {
-    opts.Connection(builder.Configuration.GetConnectionString("Database")!);
-}).UseLightweightSessions();
+    o.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
 
 var app = builder.Build();
 

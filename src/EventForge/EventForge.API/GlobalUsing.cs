@@ -13,3 +13,5 @@ global using FluentValidation;
 global using Mapster;
 global using Marten;
 global using MediatR;
+global using BuildingBlocks.Exceptions.Handler;
+global using System.Text.Json.Serialization;

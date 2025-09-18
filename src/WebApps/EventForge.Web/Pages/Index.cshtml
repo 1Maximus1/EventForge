@@ -1,0 +1,68 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Events";
+}
+<h2>Create Event</h2>
+<form method="post">
+    <div>
+        <label>Name</label>
+        <input asp-for="Form.Name" />
+    </div>
+    <div>
+        <label>Category</label>
+        <select asp-for="Form.Category" asp-items="Model.Categories"></select>
+    </div>
+    <div>
+        <label>Place</label>
+        <input asp-for="Form.Place" />
+    </div>
+    <div>
+        <label>Date</label>
+        <input asp-for="Form.Date" type="date" />
+    </div>
+    <div>
+        <label>Time</label>
+        <input asp-for="Form.Time" type="time" />
+    </div>
+    <div>
+        <label>Description</label>
+        <input asp-for="Form.Description" />
+    </div>
+    <div>
+        <label>AdditionalInfo</label>
+        <input asp-for="Form.AdditionalInfo" />
+    </div>
+    <div>
+        <label>Image url</label>
+        <input asp-for="Form.ImageUrl" />
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
+<hr />
+
+<h2>Saved events</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Place</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var e in Model.Events)
+        {
+            <tr>
+                <td>@e.Name</td>
+                <td>@e.Category</td>
+                <td>@e.Place</td>
+                <td>@e.Date</td>
+                <td>@e.Time</td>
+            </tr>
+        }
+    </tbody>
+</table>

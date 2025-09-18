@@ -9,5 +9,10 @@ services:
       context: .
       dockerfile: EventForge/EventForge.API/Dockerfile
 
+  eventforge.web:
+    build:
+      context: .
+      dockerfile: WebApps/EventForge.Web/Dockerfile
+
 volumes:
   eventdbdata:
