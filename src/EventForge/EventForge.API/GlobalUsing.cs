@@ -1,0 +1,15 @@
+﻿global using BuildingBlocks.Behaviors;
+global using BuildingBlocks.CQRS;
+global using BuildingBlocks.Exceptions;
+global using Carter;
+global using EventForge.API.Abstactions;
+global using EventForge.API.Dtos;
+global using EventForge.API.Dtos.Validators;
+global using EventForge.API.Enums;
+global using EventForge.API.Exceptions;
+global using EventForge.API.Models;
+global using EventForge.API.ValueObjects;
+global using FluentValidation;
+global using Mapster;
+global using Marten;
+global using MediatR;

@@ -10,6 +10,15 @@
 *.userosscache
 *.sln.docstates
 
+# Local environment and app settings
+.env
+.env.* 
+!env.docker.sample       
+
+appsettings.json
+appsettings.*.json
+!appsettings.Development.json   
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
