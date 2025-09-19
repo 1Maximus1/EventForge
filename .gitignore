@@ -13,7 +13,7 @@
 # Local environment and app settings
 .env
 .env.* 
-!env.docker.sample       
+!.env.sample       
 
 appsettings.json
 appsettings.*.json
