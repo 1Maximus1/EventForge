@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Shared\" />
     <Folder Include="Services\" />
+    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
 </Project>

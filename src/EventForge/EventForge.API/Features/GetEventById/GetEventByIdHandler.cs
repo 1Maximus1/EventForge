@@ -1,19 +1,23 @@
-﻿namespace EventForge.API.Features.GetEventById;
+﻿using EventForge.API.Data;
+
+namespace EventForge.API.Features.GetEventById;
 
 public sealed record GetEventByIdQuery(Guid Id) : IQuery<GetEventByIdResult>;
 public sealed record GetEventByIdResult(EventDto Event);
 
 
-public class GetEventByIdQueryHandler(IDocumentSession session)
+public class GetEventByIdQueryHandler(ApplicationDbContext dbContext)
     : IQueryHandler<GetEventByIdQuery, GetEventByIdResult>
 {
     public async Task<GetEventByIdResult> Handle(GetEventByIdQuery request, CancellationToken cancellationToken)
     {
-        var entity = await session.LoadAsync<Event>(request.Id, cancellationToken);
+        var id = ValueObjects.EventId.Of(request.Id);
+
+        var entity = await dbContext.Events
+            .FirstOrDefaultAsync(e => e.Id == id, cancellationToken);
 
         if (entity is null)
             throw new EventNotFoundException(request.Id);
-
 
         var dto = new EventDto(
             entity.Name.Value,

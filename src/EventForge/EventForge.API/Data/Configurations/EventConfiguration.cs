@@ -7,8 +7,8 @@ public class EventConfiguration : IEntityTypeConfiguration<Event>
         builder.HasKey(e => e.Id);
 
         builder.Property(e => e.Id).HasConversion(
-            id => id.Value,               
-            guid => EventId.Of(guid));    
+            id => id.Value,
+            guid => ValueObjects.EventId.Of(guid));
 
         builder.Property(e => e.Category)
             .HasConversion(
@@ -16,12 +16,12 @@ public class EventConfiguration : IEntityTypeConfiguration<Event>
                 s => (EventCategory)Enum.Parse(typeof(EventCategory), s))
             .IsRequired();
 
-        builder.ComplexProperty(e => e.Name, nb =>
+        builder.ComplexProperty(e => e.Name, b =>
         {
-            nb.Property(n => n.Value)
-              .HasColumnName(nameof(Event.Name))
-              .HasMaxLength(100)
-              .IsRequired();
+            b.Property(p => p.Value)
+             .HasColumnName(nameof(Event.Name))
+             .HasMaxLength(100)
+             .IsRequired();
         });
 
         builder.ComplexProperty(e => e.Place, pb =>
@@ -43,11 +43,11 @@ public class EventConfiguration : IEntityTypeConfiguration<Event>
               .IsRequired();
         });
 
-        builder.ComplexProperty(e => e.ImageUrl, ib =>
+        builder.ComplexProperty(e => e.ImageUrl, b =>
         {
-            ib.Property(i => i.Value)
-              .HasColumnName(nameof(Event.ImageUrl))
-              .HasMaxLength(2048);
+            b.Property(p => p.Value)
+             .HasColumnName(nameof(Event.ImageUrl))
+             .HasMaxLength(2048);
         });
 
         builder.Property(e => e.Description)
@@ -56,6 +56,14 @@ public class EventConfiguration : IEntityTypeConfiguration<Event>
 
         builder.Property(e => e.AdditionalInfo)
             .HasMaxLength(500);
+
+        builder.Property(e => e.CreatedAt)
+            .HasDefaultValueSql("NOW() AT TIME ZONE 'UTC'")
+            .ValueGeneratedOnAdd();
+
+        builder.Property(e => e.LastModified)
+            .HasDefaultValueSql("NOW() AT TIME ZONE 'UTC'")
+            .ValueGeneratedOnAdd();
     }
 }
 

@@ -1,4 +1,6 @@
-﻿namespace EventForge.API.Features.UpdateEventById;
+﻿using EventForge.API.Data;
+
+namespace EventForge.API.Features.UpdateEventById;
 
 public sealed record UpdateEventCommand(EventDto Event, Guid Id)
     : ICommand<UpdateEventResult>;
@@ -19,16 +21,18 @@ public class UpdateEventCommandValidator : AbstractValidator<UpdateEventCommand>
 }
 
 
-public class UpdateEventByIdCommandHandler(IDocumentSession session) : ICommandHandler<UpdateEventCommand, UpdateEventResult>
+public class UpdateEventByIdCommandHandler(ApplicationDbContext dbContext) : ICommandHandler<UpdateEventCommand, UpdateEventResult>
 {
     public async Task<UpdateEventResult> Handle(UpdateEventCommand request, CancellationToken cancellationToken)
     {
-        var eventRequestId = request.Id;
         var evenRequest = request.Event;
+        var id = ValueObjects.EventId.Of(request.Id);
 
-        var entity = await session.LoadAsync<Event>(eventRequestId, cancellationToken);
+        var entity = await dbContext.Events
+            .FirstOrDefaultAsync(e => e.Id == id, cancellationToken);
+
         if (entity is null)
-            throw new EventNotFoundException(eventRequestId);
+            throw new EventNotFoundException(id.Value);
 
         entity.Update(
             EventName.Of(evenRequest.Name),
@@ -40,8 +44,8 @@ public class UpdateEventByIdCommandHandler(IDocumentSession session) : ICommandH
             string.IsNullOrWhiteSpace(evenRequest.ImageUrl) ? null : ImageUrl.Of(evenRequest.ImageUrl)
         );
 
-        session.Store(entity);
-        await session.SaveChangesAsync(cancellationToken);
+        dbContext.Update(entity);
+        await dbContext.SaveChangesAsync(cancellationToken);
 
         return new UpdateEventResult(true);
     }

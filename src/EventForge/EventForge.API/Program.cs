@@ -13,6 +13,11 @@ builder.Services.AddMediatR(config =>
     config.AddOpenBehavior(typeof(LoggingBehavior<,>));
 });
 
+builder.Services.AddDbContext<ApplicationDbContext>((sp, options) =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Database"));
+});
+
 builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
 
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
@@ -23,6 +28,8 @@ builder.Services.ConfigureHttpJsonOptions(o =>
 });
 
 var app = builder.Build();
+
+app.UseMigration();
 
 app.MapCarter();
 

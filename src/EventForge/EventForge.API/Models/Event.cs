@@ -26,12 +26,12 @@ public class Event : Entity<ValueObjects.EventId>
     {
         get; private set;
     } = default!;
-    public ImageUrl? ImageUrl
+    public ImageUrl ImageUrl
     {
         get; private set;
     } = default!;
 
-    public Event()
+    private Event()
     {
     }
 
@@ -52,7 +52,8 @@ public class Event : Entity<ValueObjects.EventId>
             Category = category,
             Place = place,
             Schedule = schedule,
-            ImageUrl = imageUrl
+            ImageUrl = imageUrl,
+            CreatedAt = DateTime.UtcNow
         };
 
         ev.SetDescription(description);
@@ -77,6 +78,7 @@ public class Event : Entity<ValueObjects.EventId>
         SetDescription(description);
         SetAdditionalInfo(additionalInfo);
         ImageUrl = imageUrl;
+        LastModified = DateTime.UtcNow;
     }
     private void SetDescription(string value)
     {

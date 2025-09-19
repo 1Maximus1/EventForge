@@ -6,9 +6,9 @@ public sealed class ImageUrl
     {
         get;
     }
-    private ImageUrl(string v) => Value = v;
+    private ImageUrl(string value) => Value = value;
 
-    public static ImageUrl Of(string? value)
+    public static ImageUrl Of(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
             throw new InvalidUrlException("Image", "empty");

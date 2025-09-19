@@ -3,7 +3,7 @@
 public sealed record UpdateEventRequest(EventDto Event);
 public sealed record UpdateEventResponse(bool IsSuccess);
 
-public class UpdateEventByIdEndpoint
+public class UpdateEventByIdEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {

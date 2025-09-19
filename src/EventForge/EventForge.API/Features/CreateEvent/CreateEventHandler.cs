@@ -1,4 +1,6 @@
-﻿namespace EventForge.API.Features.CreateEvent;
+﻿using EventForge.API.Data;
+
+namespace EventForge.API.Features.CreateEvent;
 
 public record CreateEventCommand(EventDto Event) : ICommand<CreateEventResult>;
 public record CreateEventResult(Guid Id);
@@ -13,7 +15,7 @@ public class CreateEventCommandValidator : AbstractValidator<CreateEventCommand>
     }
 }
 
-public class CreateEventCommandHandler(IDocumentSession session) : ICommandHandler<CreateEventCommand, CreateEventResult>
+public class CreateEventCommandHandler(ApplicationDbContext dbContext) : ICommandHandler<CreateEventCommand, CreateEventResult>
 {
     public async Task<CreateEventResult> Handle(CreateEventCommand request, CancellationToken cancellationToken)
     {
@@ -36,8 +38,8 @@ public class CreateEventCommandHandler(IDocumentSession session) : ICommandHandl
             imageUrl
         );
 
-        session.Store(createdEvent);
-        await session.SaveChangesAsync(cancellationToken);
+        dbContext.Add(createdEvent);
+        await dbContext.SaveChangesAsync(cancellationToken);
 
         return new CreateEventResult(id.Value);
     }
