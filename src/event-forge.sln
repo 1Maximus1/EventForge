@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{6BAD82DA-B873-4AE6-9F9F-F2DEE37144EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EventForge", "EventForge", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventForge.API", "EventForge\EventForge.API\EventForge.API.csproj", "{11DCA572-BB0F-8A36-2FF3-C897306BA4D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{E68A8B39-2B83-4354-8CE9-632BC7E0BFA0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks", "BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj", "{E55A6AA5-AD53-4A42-BFC5-92B0C587B97C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApps", "WebApps", "{F134DB1F-E41E-40AC-A687-AAE5F6D58C58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventForge.Web", "WebApps\EventForge.Web\EventForge.Web.csproj", "{C5C23346-E407-4D13-A928-92ABB240CF62}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6BAD82DA-B873-4AE6-9F9F-F2DEE37144EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BAD82DA-B873-4AE6-9F9F-F2DEE37144EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BAD82DA-B873-4AE6-9F9F-F2DEE37144EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BAD82DA-B873-4AE6-9F9F-F2DEE37144EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11DCA572-BB0F-8A36-2FF3-C897306BA4D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11DCA572-BB0F-8A36-2FF3-C897306BA4D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11DCA572-BB0F-8A36-2FF3-C897306BA4D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11DCA572-BB0F-8A36-2FF3-C897306BA4D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E55A6AA5-AD53-4A42-BFC5-92B0C587B97C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E55A6AA5-AD53-4A42-BFC5-92B0C587B97C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E55A6AA5-AD53-4A42-BFC5-92B0C587B97C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E55A6AA5-AD53-4A42-BFC5-92B0C587B97C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5C23346-E407-4D13-A928-92ABB240CF62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5C23346-E407-4D13-A928-92ABB240CF62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5C23346-E407-4D13-A928-92ABB240CF62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5C23346-E407-4D13-A928-92ABB240CF62}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{11DCA572-BB0F-8A36-2FF3-C897306BA4D9} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{E55A6AA5-AD53-4A42-BFC5-92B0C587B97C} = {E68A8B39-2B83-4354-8CE9-632BC7E0BFA0}
+		{C5C23346-E407-4D13-A928-92ABB240CF62} = {F134DB1F-E41E-40AC-A687-AAE5F6D58C58}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3FF7AAA1-9B1C-4AF0-87A3-33954F8066D5}
+	EndGlobalSection
+EndGlobal

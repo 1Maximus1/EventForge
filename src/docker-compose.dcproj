@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.Docker.Sdk">
+	<PropertyGroup Label="Globals">
+		<ProjectVersion>2.1</ProjectVersion>
+		<DockerTargetOS>Linux</DockerTargetOS>
+		<DockerPublishLocally>False</DockerPublishLocally>
+		<ProjectGuid>6bad82da-b873-4ae6-9f9f-f2dee37144ef</ProjectGuid>
+		<DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
+		<DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
+		<DockerServiceName>eventforge.api</DockerServiceName>
+	</PropertyGroup>
+	<ItemGroup>
+		<Service Include="eventforge.api">
+			<Project>..\EventForge\EventForge.API\EventForge.API.csproj</Project>
+		</Service>
+		<Service Include="eventforge.web">
+			<Project>..\WebApps\EventForge.Web\EventForge.Web.csproj</Project>
+		</Service>
+	</ItemGroup>
+	<ItemGroup>
+		<None Include=".env" />
+		<None Include="docker-compose.override.yml">
+			<DependentUpon>docker-compose.yml</DependentUpon>
+		</None>
+		<None Include="docker-compose.yml" />
+		<None Include=".dockerignore" />
+		<None Include=".env.sample" />
+	</ItemGroup>
+</Project>

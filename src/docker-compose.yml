@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  eventdb:
+    image: postgres:16-alpine
+
+  eventforge.api:
+    build:
+      context: .
+      dockerfile: EventForge/EventForge.API/Dockerfile
+
+  eventforge.web:
+    build:
+      context: .
+      dockerfile: WebApps/EventForge.Web/Dockerfile
+
+volumes:
+  eventdbdata:

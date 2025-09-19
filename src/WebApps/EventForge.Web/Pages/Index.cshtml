@@ -1,0 +1,105 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Events";
+    }
+
+<h2>@(Model.Form.Id == Guid.Empty ? "Create Event" : "Edit Event")</h2>
+
+<form method="post" asp-page-handler="Upsert">
+    @Html.AntiForgeryToken()
+    <input asp-for="Form.Id" type="hidden" />
+
+    <div>
+        <label>Name</label>
+        <input asp-for="Form.Name" />
+        <span asp-validation-for="Form.Name" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label>Category</label>
+        <select asp-for="Form.Category" asp-items="Model.Categories"></select>
+        <span asp-validation-for="Form.Category" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label>Place</label>
+        <input asp-for="Form.Place" />
+        <span asp-validation-for="Form.Place" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label>Date</label>
+        <input asp-for="Form.Date" type="date" />
+        <span asp-validation-for="Form.Date" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label>Time</label>
+        <input asp-for="Form.Time" type="time" />
+        <span asp-validation-for="Form.Time" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label>Description</label>
+        <textarea asp-for="Form.Description"></textarea>
+        <span asp-validation-for="Form.Description" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label>AdditionalInfo</label>
+        <textarea asp-for="Form.AdditionalInfo"></textarea>
+        <span asp-validation-for="Form.AdditionalInfo" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label>Image url</label>
+        <input asp-for="Form.ImageUrl" />
+        <span asp-validation-for="Form.ImageUrl" class="text-danger"></span>
+    </div>
+
+    <button type="submit">@(Model.Form.Id == Guid.Empty ? "Create" : "Update")</button>
+
+    @if (Model.Form.Id != Guid.Empty)
+        {
+        <button type="submit" formmethod="post" formaction="?handler=Cancel">Cancel</button>
+        }
+</form>
+
+<hr />
+
+<h2>Saved events</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Place</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var e in Model.Events)
+            {
+            <tr>
+                <td>@e.Name</td>
+                <td>@e.Category</td>
+                <td>@e.Place</td>
+                <td>@e.Date</td>
+                <td>@e.Time</td>
+                <td>
+                    <form method="post" asp-page-handler="Edit" asp-route-id="@e.Id" style="display:inline">
+                        @Html.AntiForgeryToken()
+                        <button type="submit">Edit</button>
+                    </form>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@e.Id" style="display:inline">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" onclick="return confirm('Delete this event?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            }
+    </tbody>
+</table>
